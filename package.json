@@ -1,0 +1,39 @@
+{
+  "name": "offlinepay",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Offline Payment",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^1.7.3",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "framer-motion": "^5",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.4",
+    "next": "12.0.7",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.5",
+    "@types/react": "17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "eslint": "8.5.0",
+    "eslint-config-next": "12.0.7",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1",
+    "typescript": "4.5.4"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  }
+}
