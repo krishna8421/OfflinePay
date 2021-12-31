@@ -17,7 +17,6 @@ import {
 } from "@chakra-ui/react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
-import register from "./api/register";
 
 const Register: NextPage = () => {
   const [show, setShow] = useState(false);

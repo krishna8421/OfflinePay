@@ -3,8 +3,15 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../public/OfflinePay.svg";
+import React from "react";
 
-const Nav: NextPage = ({ showBoth, showLogin, showRegister }) => {
+interface Props {
+  showBoth?: boolean;
+  showLogin?: boolean;
+  showRegister?: boolean;
+}
+
+const Nav: NextPage<Props> = ({ showBoth, showLogin, showRegister }) => {
   return (
     <Flex w="100%" h="4rem" align="center">
       <Link href="/" passHref>
