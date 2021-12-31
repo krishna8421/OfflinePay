@@ -23,16 +23,16 @@ const passCompare = async (
   const jwt_secret = process.env.JWT_SECRET;
 
   if (!jwt_secret) {
-    res.status(500).json({
+    res.status(200).json({
       status: "error",
       error: "Server ERR, JWT Secret not found.",
     });
     return;
   }
   if (!(await bcrypt.compare(pass, dbPass))) {
-    res.status(400).json({
+    res.status(200).json({
       status: "error",
-      error: "Invalid username or password",
+      error: "Invalid Number or Password",
     });
   }
   return jwt.sign({ name, num }, jwt_secret, {
@@ -55,16 +55,16 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
 
     const { error } = LoginSchema.validate(req.body);
     if (error) {
-      res.status(400).json({
+      res.status(200).json({
         status: "error",
-        error: error.message,
+        error: "Invalid Data",
       });
       return;
     }
     const { num, pass } = req.body;
 
     if (!num || !pass) {
-      res.status(400).json({
+      res.status(200).json({
         status: "error",
         error: "Please fill all the fields",
       });
@@ -72,7 +72,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
 
     const user: UserType = await User.findOne({ num });
     if (!user) {
-      res.status(400).json({
+      res.status(200).json({
         status: "error",
         error: "User not found",
       });

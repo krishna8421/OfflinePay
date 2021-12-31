@@ -4,23 +4,60 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../public/OfflinePay.svg";
 
-const Nav: NextPage = () => {
+const Nav: NextPage = ({ showBoth, showLogin, showRegister }) => {
   return (
     <Flex w="100%" h="4rem" align="center">
-      <Box ml={"1rem"}>
-        <Image src={logo} alt="LOGO" layout="fixed" />
-      </Box>
+      <Link href="/" passHref>
+        <Box
+          ml={"1rem"}
+          _hover={{
+            cursor: "pointer",
+          }}
+        >
+          <a>
+            <Image src={logo} alt="LOGO" layout="fixed" />
+          </a>
+        </Box>
+      </Link>
       <Spacer />
       <Box mr={"1rem"}>
-        <Text fontSize={["sm", "md", "lg"]} fontWeight="500" fontFamily="mono">
-          <Link href="/login">
-            <a>Login</a>
-          </Link>
-          &nbsp;/&nbsp;
-          <Link href="/register">
-            <a>Register</a>
-          </Link>
-        </Text>
+        {showBoth && (
+          <Text
+            fontSize={["sm", "md", "lg"]}
+            fontWeight="500"
+            fontFamily="mono"
+          >
+            <Link href="/login">
+              <a>Login</a>
+            </Link>
+            &nbsp;/&nbsp;
+            <Link href="/register">
+              <a>Register</a>
+            </Link>
+          </Text>
+        )}
+        {showLogin && (
+          <Text
+            fontSize={["sm", "md", "lg"]}
+            fontWeight="500"
+            fontFamily="mono"
+          >
+            <Link href="/login">
+              <a>Login</a>
+            </Link>
+          </Text>
+        )}
+        {showRegister && (
+          <Text
+            fontSize={["sm", "md", "lg"]}
+            fontWeight="500"
+            fontFamily="mono"
+          >
+            <Link href="/register">
+              <a>Register</a>
+            </Link>
+          </Text>
+        )}
       </Box>
     </Flex>
   );

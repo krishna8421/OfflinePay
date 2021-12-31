@@ -6,8 +6,8 @@ import Nav from "./Nav";
 const NoLogin: NextPage = () => {
   const router = useRouter();
   return (
-    <Flex w={"100%"} h={"100vh"} bg={"gray.50"}>
-      <Nav />
+    <Flex w={"100%"} h={"100vh"} bg={"gray.50"} direction={"column"}>
+      <Nav showBoth={true} />
     </Flex>
   );
 };
