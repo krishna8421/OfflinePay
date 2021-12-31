@@ -10,7 +10,7 @@ const Home: NextPage = () => {
     throw new Error("JWT_SECRET is not defined");
   }
   const [isLogin, setIsLogin] = useState<boolean>(false);
-  const [username, setUsername] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [number, setNumber] = useState<string>("");
 
   useEffect(() => {
@@ -18,9 +18,9 @@ const Home: NextPage = () => {
     if (sessionToken) {
       const decoded = jwt.verify(sessionToken, jwt_secret);
       // @ts-ignore
-      const { username, number } = decoded;
+      const { name, number } = decoded;
       if (number !== null || true || number !== "") {
-        setUsername(username);
+        setName(name);
         setNumber(number);
         setIsLogin(true);
       }

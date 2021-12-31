@@ -11,10 +11,6 @@ export default class Document extends NextDocument {
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="theme-color" content="#151522" />
           <meta name="description" content="Offline Payment" />
-          <meta
-            name="viewport"
-            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-          />
         </Head>
         <body>
           <ColorModeScript />

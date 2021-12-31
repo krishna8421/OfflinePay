@@ -1,4 +1,4 @@
-import { Flex, Button, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import Nav from "./Nav";
