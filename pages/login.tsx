@@ -69,7 +69,7 @@ const Login: NextPage = () => {
       <Nav showRegister={true} />
       <Flex
         mt={"5rem"}
-        w={"30%"}
+        w={"90%"}
         direction={"column"}
         align={"center"}
         justify={"center"}
