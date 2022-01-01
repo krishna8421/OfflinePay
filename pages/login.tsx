@@ -28,7 +28,7 @@ const Login: NextPage = () => {
   const router = useRouter();
   type LoginData = {
     pass: string;
-    num: number;
+    num: number | null;
   };
   const loginUser = async (data: LoginData) => {
     const res = await axios.post("/api/login", data);
@@ -79,7 +79,7 @@ const Login: NextPage = () => {
         </Text>
         <Formik
           initialValues={{
-            num: 0,
+            num: null,
             pass: "",
           }}
           validationSchema={loginSchema}
