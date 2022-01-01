@@ -34,6 +34,7 @@ const passCompare = async (
       status: "error",
       error: "Invalid Number or Password",
     });
+    return
   }
   return jwt.sign({ name, num }, jwt_secret, {
     expiresIn: "7d",
@@ -47,10 +48,11 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
   }
   if (req.method === "POST") {
     if (!req.body) {
-      res.status(400).json({
+      res.status(200).json({
         status: "error",
         error: "No Data Found",
       });
+      return
     }
 
     const { error } = LoginSchema.validate(req.body);
@@ -59,7 +61,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
         status: "error",
         error: "Invalid Data",
       });
-      return;
+      return
     }
     const { num, pass } = req.body;
 
@@ -68,6 +70,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
         status: "error",
         error: "Please fill all the fields",
       });
+      return
     }
 
     const user: UserType = await User.findOne({ num });
@@ -76,13 +79,15 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
         status: "error",
         error: "User not found",
       });
+      return
     }
     const { pass: dbPass, name } = user;
     const token = await passCompare(name, num, pass, dbPass, res);
-    return res.status(200).json({
-      status: "success",
-      error: null,
-      token,
-    });
+    if(token){
+      res.status(200).json({
+        status: "success",
+        token,
+      });
+    }
   }
 }

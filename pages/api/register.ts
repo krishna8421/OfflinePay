@@ -17,7 +17,7 @@ const saveToDB = async (
   const newUser = new User({ name, pass: hashedPass, num });
 
   if (!jwt_secret) {
-    res.status(500).json({
+    res.status(200).json({
       status: "error",
       error: "Server ERR, JWT Secret not found.",
     });
@@ -25,7 +25,7 @@ const saveToDB = async (
   }
   const saved = await newUser.save();
   if (!saved) {
-    res.status(500).json({
+    res.status(200).json({
       status: "error",
       error: "Server ERR, User not saved.",
     });
@@ -46,7 +46,7 @@ export default async function register(
   }
   if (req.method === "POST") {
     if (!req.body) {
-      res.status(400).json({
+      res.status(200).json({
         status: "error",
         error: "No Data Found",
       });
@@ -54,7 +54,7 @@ export default async function register(
     }
     const { error } = RegisterSchema.validate(req.body);
     if (error) {
-      res.status(400).json({
+      res.status(200).json({
         status: "error",
         error: error.message,
       });
@@ -64,7 +64,7 @@ export default async function register(
     const { name, num, pass } = req.body;
 
     if (!name || !num || !pass) {
-      res.status(400).json({
+      res.status(200).json({
         status: "error",
         error: "Please fill all the fields",
       });
@@ -72,7 +72,7 @@ export default async function register(
     }
     const userExists = await User.findOne({ num });
     if (userExists) {
-      return res.status(400).json({
+      return res.status(200).json({
         status: "error",
         error: "User already exists",
       });
@@ -80,7 +80,7 @@ export default async function register(
 
     const token = await saveToDB(name, num, pass, res);
     if (!token) {
-      return res.status(500).json({
+      return res.status(200).json({
         status: "error",
         error: "Server ERR, Token not generated.",
       });
