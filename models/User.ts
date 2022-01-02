@@ -16,6 +16,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     minlength: [6, "Password cannot be less than 6 characters"],
   },
+  balance: {
+    required: [true, "Please provide a balance"],
+    type: Number,
+    min: [0, "Amount cannot be less than 0"],
+  },
+  transactions: [String],
 });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);

@@ -5,6 +5,8 @@ import User from "../../models/User";
 import jwt from "jsonwebtoken";
 import { RegisterSchema } from "../../utils/apiDataValidation";
 
+const initBalance = 100000;
+
 const saveToDB = async (
   name: string,
   num: number,
@@ -14,8 +16,13 @@ const saveToDB = async (
   const jwt_secret = process.env.JWT_SECRET;
   const salt = await bcrypt.genSalt();
   const hashedPass = await bcrypt.hash(pass, salt);
-  const newUser = new User({ name, pass: hashedPass, num });
-
+  const newUser = new User({
+    name,
+    pass: hashedPass,
+    num,
+    balance: initBalance,
+    transactions: [],
+  });
   if (!jwt_secret) {
     res.status(200).json({
       status: "error",

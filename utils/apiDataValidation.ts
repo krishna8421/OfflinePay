@@ -21,3 +21,9 @@ export const LoginSchema = Joi.object({
 
   num: Joi.number().integer().min(5000000000).max(9999999999).required(),
 });
+
+export const TransferSchema = Joi.object({
+  num_from: Joi.number().integer().min(5000000000).max(9999999999).required(),
+  num_to: Joi.number().integer().min(5000000000).max(9999999999).required(),
+  amount: Joi.number().integer().min(1).required(),
+});
