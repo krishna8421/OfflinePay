@@ -9,9 +9,10 @@ interface Props {
   showBoth?: boolean;
   showLogin?: boolean;
   showRegister?: boolean;
+  name?: string;
 }
 
-const Nav: NextPage<Props> = ({ showBoth, showLogin, showRegister }) => {
+const Nav: NextPage<Props> = ({ showBoth, showLogin, showRegister, name }) => {
   return (
     <Flex w="100%" h="4rem" align="center">
       <Link href="/" passHref>
@@ -64,6 +65,17 @@ const Nav: NextPage<Props> = ({ showBoth, showLogin, showRegister }) => {
               <a>Register</a>
             </Link>
           </Text>
+        )}
+        {name && (
+          <Flex bg={"gray.200"} px={2} py={1.5} borderRadius={10}>
+            <Text
+              fontSize={["sm", "md", "lg"]}
+              fontWeight="600"
+              fontFamily="mono"
+            >
+              {name}
+            </Text>
+          </Flex>
         )}
       </Box>
     </Flex>

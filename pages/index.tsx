@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import { useState, useEffect } from "react";
 import NoLogin from "../components/NoLogin";
 import jwt from "jsonwebtoken";
+import DashBoardLayout from "../components/DashBoard/DashBoardLayout";
 
 const Home: NextPage = () => {
   const jwt_secret = process.env.JWT_SECRET;
@@ -30,7 +31,7 @@ const Home: NextPage = () => {
   if (!isLogin) {
     return <NoLogin />;
   }
-  return <Box>LOGIN</Box>;
+  return <DashBoardLayout name={name} />;
 };
 
 export default Home;

@@ -93,14 +93,12 @@ const Register: NextPage = () => {
           validationSchema={registerSchema}
           onSubmit={(values, actions) => {
             setTimeout(async () => {
-              const {name,num,pass} = values;
-              await registerUser(
-                {
-                  name,
-                  num: parseInt(num,10),
-                  pass,
-                }
-              );
+              const { name, num, pass } = values;
+              await registerUser({
+                name,
+                num: parseInt(num, 10),
+                pass,
+              });
               actions.setSubmitting(false);
             }, 1000);
           }}

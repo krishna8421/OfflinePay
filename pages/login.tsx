@@ -85,9 +85,9 @@ const Login: NextPage = () => {
           validationSchema={loginSchema}
           onSubmit={(values, actions) => {
             setTimeout(async () => {
-              const {num, pass } = values;
+              const { num, pass } = values;
               await loginUser({
-                num : parseInt(num,10),
+                num: parseInt(num, 10),
                 pass,
               });
               actions.setSubmitting(false);
