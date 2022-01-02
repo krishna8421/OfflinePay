@@ -29,7 +29,7 @@ const Register: NextPage = () => {
   type RegisterData = {
     name: string;
     pass: string;
-    num: number | null;
+    num: number;
   };
   const registerUser = async (data: RegisterData) => {
     const res = await axios.post("/api/register", data);
@@ -87,13 +87,20 @@ const Register: NextPage = () => {
         <Formik
           initialValues={{
             name: "",
-            num: null,
+            num: "",
             pass: "",
           }}
           validationSchema={registerSchema}
           onSubmit={(values, actions) => {
             setTimeout(async () => {
-              await registerUser(values);
+              const {name,num,pass} = values;
+              await registerUser(
+                {
+                  name,
+                  num: parseInt(num,10),
+                  pass,
+                }
+              );
               actions.setSubmitting(false);
             }, 1000);
           }}
