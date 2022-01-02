@@ -111,7 +111,9 @@ const Register: NextPage = () => {
                     isInvalid={form.errors.name && form.touched.name}
                     mb={6}
                   >
-                    <FormLabel htmlFor="num">Name</FormLabel>
+                    <FormLabel id="name" htmlFor="name">
+                      Name
+                    </FormLabel>
                     <Input
                       {...field}
                       type="text"
@@ -129,7 +131,9 @@ const Register: NextPage = () => {
                     isInvalid={form.errors.num && form.touched.num}
                     mb={6}
                   >
-                    <FormLabel htmlFor="num">Number</FormLabel>
+                    <FormLabel id="num" htmlFor="num">
+                      Number
+                    </FormLabel>
                     <InputGroup>
                       {/* eslint-disable-next-line react/no-children-prop */}
                       <InputLeftAddon children="+91" />
@@ -151,7 +155,9 @@ const Register: NextPage = () => {
                     isInvalid={form.errors.pass && form.touched.pass}
                     mb={6}
                   >
-                    <FormLabel htmlFor="pass">Password</FormLabel>
+                    <FormLabel id="pass" htmlFor="pass">
+                      Password
+                    </FormLabel>
                     <InputGroup size="md">
                       <Input
                         {...field}

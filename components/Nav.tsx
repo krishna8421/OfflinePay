@@ -23,7 +23,7 @@ const Nav: NextPage<Props> = ({ showBoth, showLogin, showRegister, name }) => {
           }}
         >
           <a>
-            <Image src={logo} alt="LOGO" layout="fixed" />
+            <Image src={logo} alt="LOGO" layout="fixed" priority />
           </a>
         </Box>
       </Link>
