@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
+import Cookies from "js-cookie";
 
 const Register: NextPage = () => {
   const [show, setShow] = useState(false);
@@ -46,7 +47,7 @@ const Register: NextPage = () => {
         status: false,
         message: "",
       });
-      localStorage.setItem("jwt-token", res.data.token);
+      Cookies.set("jwt-token", res.data.token);
       await router.push("/");
     }
   };

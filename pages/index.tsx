@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import NoLogin from "../components/NoLogin";
 import jwt from "jsonwebtoken";
 import DashBoardLayout from "../components/DashBoard/DashBoardLayout";
+import Cookies from "js-cookie";
 
 const Home: NextPage = () => {
   const jwt_secret = process.env.JWT_SECRET;
@@ -15,7 +16,7 @@ const Home: NextPage = () => {
   const [number, setNumber] = useState<string>("");
 
   useEffect(() => {
-    const sessionToken = localStorage.getItem("jwt-token");
+    const sessionToken = Cookies.get("jwt-token");
     if (sessionToken) {
       const decoded = jwt.verify(sessionToken, jwt_secret);
       // @ts-ignore

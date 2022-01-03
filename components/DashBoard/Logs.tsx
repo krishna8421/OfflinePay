@@ -1,7 +1,11 @@
 import { NextPage } from "next";
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Divider, Flex, Text } from "@chakra-ui/react";
 
-const Logs = () => {
+interface Props {
+  logs: String[];
+}
+
+const Logs: NextPage<Props> = ({ logs }) => {
   return (
     <Flex
       direction="column"
@@ -14,10 +18,22 @@ const Logs = () => {
       mb={20}
       overflow={["scroll"]}
     >
-      <Text fontSize={"md"} my={1} fontWeight={"200"} fontFamily={"inherit"}>
-        $[Jan 02 2022 23:14] +919876543245 transferred &quot;Rs. 10000&quot; to
-        +919876543212
-      </Text>
+      {logs.map((item, index) => {
+        return (
+          <Box key={index}>
+            <Text
+              key={index}
+              fontSize={"md"}
+              my={1}
+              fontWeight={"200"}
+              fontFamily={"inherit"}
+            >
+              {item}
+            </Text>
+            <Divider borderColor={"gray.300"} />
+          </Box>
+        );
+      })}
     </Flex>
   );
 };
