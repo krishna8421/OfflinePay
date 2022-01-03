@@ -18,22 +18,25 @@ const Logs: NextPage<Props> = ({ logs }) => {
       mb={20}
       overflow={["scroll"]}
     >
-      {logs.map((item, index) => {
-        return (
-          <Box key={index}>
-            <Text
-              key={index}
-              fontSize={"md"}
-              my={1}
-              fontWeight={"200"}
-              fontFamily={"inherit"}
-            >
-              {item}
-            </Text>
-            <Divider borderColor={"gray.300"} />
-          </Box>
-        );
-      })}
+      {logs
+        .slice(0)
+        .reverse()
+        .map((item, index) => {
+          return (
+            <Box key={index}>
+              <Text
+                key={index}
+                fontSize={"md"}
+                my={1}
+                fontWeight={"200"}
+                fontFamily={"inherit"}
+              >
+                {item}
+              </Text>
+              <Divider borderColor={"gray.300"} />
+            </Box>
+          );
+        })}
     </Flex>
   );
 };

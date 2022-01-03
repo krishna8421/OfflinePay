@@ -13,7 +13,6 @@ const Home: NextPage = () => {
   }
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
-  const [number, setNumber] = useState<string>("");
 
   useEffect(() => {
     const sessionToken = Cookies.get("jwt-token");
@@ -21,9 +20,8 @@ const Home: NextPage = () => {
       const decoded = jwt.verify(sessionToken, jwt_secret);
       // @ts-ignore
       const { name, number } = decoded;
-      if (number !== null || true || number !== "") {
+      if (number !== null || number !== "") {
         setName(name);
-        setNumber(number);
         setIsLogin(true);
       }
     }

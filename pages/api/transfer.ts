@@ -70,6 +70,13 @@ export default async function transfer(
       });
       return;
     }
+    if (!(await User.findOne({ num: num_to }))) {
+      res.status(200).json({
+        status: "error",
+        error: "User not found",
+      });
+      return;
+    }
     const user_to = await User.updateOne(
       { num: num_to },
       {
@@ -85,13 +92,7 @@ export default async function transfer(
         upsert: true,
       }
     );
-    if (!user_to) {
-      res.status(200).json({
-        status: "error",
-        error: "User not found",
-      });
-      return;
-    }
+
     if (!user_to.acknowledged) {
       res.status(200).json({
         status: "error",

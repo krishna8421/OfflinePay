@@ -1,5 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 import Nav from "../Nav";
+import Transfer from "./Transfer";
 import { NextPage } from "next";
 import Logs from "./Logs";
 import { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ interface Props {
 const DashBoardLayout: NextPage<Props> = ({ name }) => {
   const [logs, setLogs] = useState<String[]>([]);
   const [balance, setBalance] = useState<number>(0);
+  const [refetch, setRefetch] = useState<boolean>(false);
 
   useEffect(() => {
     const getLog = async () => {
@@ -25,12 +27,16 @@ const DashBoardLayout: NextPage<Props> = ({ name }) => {
         },
       });
       const { logs, balance } = res.data;
-      console.log(logs);
       setLogs(logs);
       setBalance(balance);
     };
     getLog().then();
-  }, []);
+    setRefetch(false);
+  }, [refetch]);
+
+  const reFetch = () => {
+    setRefetch(true);
+  };
 
   return (
     <Flex direction={"column"} align={"center"}>
@@ -41,7 +47,11 @@ const DashBoardLayout: NextPage<Props> = ({ name }) => {
       <Text my={5} fontWeight={"300"} fontFamily={"monospace"} fontSize={"lg"}>
         Transfer
       </Text>
-      Transfer Happens Here
+      <Transfer
+        reFetch={() => {
+          reFetch();
+        }}
+      />
       <Text my={5} fontWeight={"300"} fontFamily={"monospace"} fontSize={"lg"}>
         Logs
       </Text>
