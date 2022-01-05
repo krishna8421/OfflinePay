@@ -55,6 +55,7 @@ export default async function transfer(
     const { num_from, num_to, amount } = req.body;
     const { num: jwtNum } = decoded;
 
+    // Check if the user is using someone else's account
     if (jwtNum !== num_from) {
       res.status(200).json({
         status: "error",
@@ -63,6 +64,7 @@ export default async function transfer(
       return;
     }
 
+    // Check if same user is sending the money
     if (num_from === num_to) {
       res.status(200).json({
         status: "error",
@@ -70,6 +72,8 @@ export default async function transfer(
       });
       return;
     }
+
+    // Check if user to send mony exists
     if (!(await User.findOne({ num: num_to }))) {
       res.status(200).json({
         status: "error",
@@ -77,6 +81,17 @@ export default async function transfer(
       });
       return;
     }
+
+    // Check if user has enough balance
+    const fromUsrData = await User.findOne({ num: num_from });
+    if (fromUsrData.balance < amount) {
+      res.status(200).json({
+        status: "error",
+        error: "You don't have enough balance",
+      });
+      return;
+    }
+
     const user_to = await User.updateOne(
       { num: num_to },
       {
@@ -93,6 +108,7 @@ export default async function transfer(
       }
     );
 
+    // IDK why
     if (!user_to.acknowledged) {
       res.status(200).json({
         status: "error",
@@ -117,6 +133,7 @@ export default async function transfer(
       }
     );
 
+    // IDK why
     if (!user_from.acknowledged) {
       res.status(200).json({
         status: "error",
@@ -125,6 +142,7 @@ export default async function transfer(
       return;
     }
 
+    // If everything is fine.
     res.status(200).json({
       status: "success",
       message: "Amount Transferred Successfully",
