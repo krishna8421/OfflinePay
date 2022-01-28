@@ -1,8 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
 import User from "../../models/User";
+import mongoDB from "../../utils/mongoDB";
 
 export default async function Data(req: NextApiRequest, res: NextApiResponse) {
+  await mongoDB();
   const jwt_secret = process.env.JWT_SECRET;
   if (!jwt_secret) {
     res.status(200).json({
@@ -18,6 +20,7 @@ export default async function Data(req: NextApiRequest, res: NextApiResponse) {
       res.status(401).send({
         message: "Access Denied",
       });
+      return;
     }
     token = token.split(" ")[1];
     if (!token) {
@@ -31,6 +34,7 @@ export default async function Data(req: NextApiRequest, res: NextApiResponse) {
       res.status(401).send({
         message: "Access Denied",
       });
+      return;
     }
     const { num } = decoded;
     const user = await User.findOne({ num });
@@ -38,6 +42,7 @@ export default async function Data(req: NextApiRequest, res: NextApiResponse) {
       res.status(401).send({
         message: "Access Denied",
       });
+      return;
     }
     const { transactions, balance } = user;
     if (!transactions) {
